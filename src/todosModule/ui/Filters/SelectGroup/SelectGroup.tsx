@@ -1,26 +1,24 @@
 import { ChangeEvent } from "react";
 import { useAppDispatch } from "../../../../store/store";
 import { setSelectValue } from "../../../model/todosSlice";
-import styles from "./SelectGroup.module.css"
+import styles from "./SelectGroup.module.css";
 
-function Select() {
-    const dispatch = useAppDispatch();
+function SelectGroup() {
+  const dispatch = useAppDispatch();
 
-    const handleChange = (e:ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setSelectValue(e.target.value))      
-    };
-  
-    return (
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setSelectValue(e.target.value));
+  };
+
+  return (
     <div className={styles.wrapper}>
-         <h3>Сортировка</h3>
-         <select className={styles.select} onChange={handleChange}>
+      <h3>Сортировка</h3>
+      <select className={styles.select} onChange={handleChange}>
         <option value="name">Наименование</option>
         <option value="status">Статус</option>
       </select>
-
     </div>
-       
-    );
-  }
-  
-  export default Select;
+  );
+}
+
+export { SelectGroup };
