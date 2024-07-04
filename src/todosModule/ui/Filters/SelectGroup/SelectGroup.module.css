@@ -1,0 +1,9 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    
+}
+.select {
+    margin-left: 25px;
+    height: 70%;
+}

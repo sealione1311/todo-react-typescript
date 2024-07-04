@@ -1,0 +1,8 @@
+.header {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: blue;
+    color: aliceblue;
+}
