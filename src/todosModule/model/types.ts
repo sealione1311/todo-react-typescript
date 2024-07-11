@@ -1,12 +1,24 @@
 export interface TodosState {
-  todosList: Todo[];
+  todosList: ITodo[];
   todoTitle: string;
-  activeRadio: string;
-  activeSelect: string;
+  filter: string;
+  sort: string;
+  editMode: boolean; 
 }
 
-export interface Todo {
+export interface ITodo {
   id: string;
   title: string;
   completed: boolean;
+}
+
+export enum Filter {
+  All = 'all',
+  Active = 'active',
+  Completed = 'completed',
+}
+
+export enum Sort {
+  Name = 'name',
+  Completed = 'completed',
 }

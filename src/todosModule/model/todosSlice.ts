@@ -4,8 +4,9 @@ import { TodosState } from "./types";
 const initialState: TodosState = {
   todosList: [],
   todoTitle: "",
-  activeRadio: "all",
-  activeSelect: "name",
+  filter: "all",
+  sort: "name",
+  editMode: false,
 };
 
 export const todosSlice = createSlice({
@@ -35,11 +36,23 @@ export const todosSlice = createSlice({
         (todo) => todo.id !== action.payload
       );
     },
-    setRadioValue: (state, action: PayloadAction<string>) => {
-      state.activeRadio = action.payload;
+    updateTodo: (state, action) => {
+      const updatedTodo = action.payload;
+      const index = state.todosList.findIndex(
+        (todo) => todo.id === updatedTodo.id
+      );
+      if (index !== -1) {
+        state.todosList[index] = updatedTodo;
+      }
     },
-    setSelectValue: (state, action: PayloadAction<string>) => {
-      state.activeSelect = action.payload;
+    setFilter: (state, action: PayloadAction<string>) => {
+      state.filter = action.payload;
+    },
+    setSort: (state, action: PayloadAction<string>) => {
+      state.sort = action.payload;
+    },
+    toggleEditMode: (state, action: PayloadAction<boolean>) => {
+      state.editMode = action.payload;
     },
   },
 });
@@ -48,8 +61,10 @@ export const {
   addTodo,
   toggleComplete,
   removeTodo,
-  setRadioValue,
-  setSelectValue,
+  setFilter,
+  setSort,
+  updateTodo,
+  toggleEditMode,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

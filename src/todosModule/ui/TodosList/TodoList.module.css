@@ -6,7 +6,7 @@
 }
 .wrapper {
   display: flex;
-  padding-left: 20px;
+  padding: 20px;
   flex-direction: column;
   border: 1px solid rgb(211, 208, 208);
   border-radius: 5px;

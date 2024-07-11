@@ -1,58 +1,25 @@
-import {
-  getActiveRadio,
-  getActiveSelect,
-  getTodos,
-} from "../../model/selectors";
+import { selectFilteredAndSortedTodos } from "../../model/selectors";
 import { useSelector } from "react-redux";
 import styles from "./TodoList.module.css";
 import { NoTodoComponent } from "../NoTodoComponent/NoTodoComponent";
-import { Todo } from "../Todo/Todo";
-import { useMemo } from "react";
+import { TodoItem } from "../TodoItem/TodoItem";
 
 function TodoList() {
-  const todosList = useSelector(getTodos);
-  const sort = useSelector(getActiveSelect);
-  const filter = useSelector(getActiveRadio);
-  const sortedAndFilteredTodos = useMemo(
-    () =>
-      todosList
-        .slice()
-        .sort((a, b) => {
-          if (sort === "name") {
-            return a.title.localeCompare(b.title);
-          } else {
-            return a.completed === b.completed ? 0 : a.completed ? 1 : -1;
-          }
-        })
-        .filter((todo) => {
-          if (filter === "all") {
-            return true;
-          } else if (filter === "active") {
-            return !todo.completed;
-          } else if (filter === "completed") {
-            return todo.completed;
-          }
-        }),
-    [todosList, sort, filter]
-  );
+  
+  const todos = useSelector(selectFilteredAndSortedTodos);
 
   return (
     <div className={styles.wrapper}>
-      {sortedAndFilteredTodos.length ? (
-        <ul className={styles.list}>
-          {sortedAndFilteredTodos.map((todo) => (
-            <Todo
-              id={todo.id}
-              key={todo.id}
-              title={todo.title}
-              completed={todo.completed}
-            />
-          ))}
-        </ul>
-      ) : (
-        <NoTodoComponent />
-      )}
-    </div>
+    {todos.length === 0 ? (
+      <NoTodoComponent />
+    ) : (
+      <ul className={styles.list}>
+        {todos.map((todo) => (
+          <TodoItem todo={todo} key={todo.id} />
+        ))}
+      </ul>
+    )}
+  </div>
   );
 }
 

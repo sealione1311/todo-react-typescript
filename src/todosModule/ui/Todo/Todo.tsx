@@ -1,6 +1,11 @@
 import { useAppDispatch } from "../../../store/store";
-import { removeTodo, toggleComplete } from "../../model/todosSlice";
-import TrashLogo from "../../../assets/trash-svgrepo-com.svg";
+import {
+  removeTodo,
+  toggleComplete,
+  toggleEditMode,
+} from "../../model/todosSlice";
+import TrashLogo from "../../../assets/trash.svg";
+import EditLogo from "../../../assets/edit-pencil.svg";
 import styles from "./Todo.module.css";
 
 interface TodoProps {
@@ -18,6 +23,10 @@ function Todo({ id, completed, title }: TodoProps) {
   const handleDeleteTodo = () => {
     dispatch(removeTodo(id));
   };
+  const handleEditTodo = () => {
+    dispatch(toggleEditMode(true));
+  };
+
   return (
     <li className={styles.item}>
       <input
@@ -29,6 +38,9 @@ function Todo({ id, completed, title }: TodoProps) {
       <h3 className={completed ? styles.completed : ""}>{title}</h3>
       <button className={styles.trashButton} onClick={handleDeleteTodo}>
         <TrashLogo />
+      </button>
+      <button className={styles.trashButton} onClick={handleEditTodo}>
+        <EditLogo />
       </button>
     </li>
   );

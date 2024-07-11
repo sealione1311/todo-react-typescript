@@ -1,8 +1,9 @@
-.item {
-  width: 90%;
-  display: flex;
+.item { 
+  display: grid;
+  grid-template-columns: 50px 1fr 30px 30px;
+  column-gap: 5px;
   align-items: center;
-  justify-content: space-between;
+
 }
 
 .completed {
@@ -10,11 +11,11 @@
 }
 
 .trashButton {
-  padding: 0;
+  padding: 5px;
   margin: 0;
   width: 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   height: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);

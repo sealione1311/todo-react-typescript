@@ -14,8 +14,10 @@ function AddNewTodo() {
   };
 
   const handleAddClick = () => {
-    dispatch(addTodo(title));
-    setTitle("");
+    if (title) {
+      dispatch(addTodo(title));
+      setTitle("");
+    }
   };
 
   return (

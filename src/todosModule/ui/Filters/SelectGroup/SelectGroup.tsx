@@ -1,13 +1,13 @@
 import { ChangeEvent } from "react";
 import { useAppDispatch } from "../../../../store/store";
-import { setSelectValue } from "../../../model/todosSlice";
+import { setSort } from "../../../model/todosSlice";
 import styles from "./SelectGroup.module.css";
 
 function SelectGroup() {
   const dispatch = useAppDispatch();
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSelectValue(e.target.value));
+    dispatch(setSort(e.target.value));
   };
 
   return (
