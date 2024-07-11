@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TodosState } from "./types";
+import { TodosState} from "./types";
 
 const initialState: TodosState = {
   todosList: [],
@@ -7,6 +7,7 @@ const initialState: TodosState = {
   filter: "all",
   sort: "name",
   editMode: false,
+  editId: ""
 };
 
 export const todosSlice = createSlice({
@@ -38,9 +39,7 @@ export const todosSlice = createSlice({
     },
     updateTodo: (state, action) => {
       const updatedTodo = action.payload;
-      const index = state.todosList.findIndex(
-        (todo) => todo.id === updatedTodo.id
-      );
+      const index = state.todosList.findIndex(todo => todo.id === updatedTodo.id);
       if (index !== -1) {
         state.todosList[index] = updatedTodo;
       }
@@ -54,6 +53,10 @@ export const todosSlice = createSlice({
     toggleEditMode: (state, action: PayloadAction<boolean>) => {
       state.editMode = action.payload;
     },
+    setEditId: (state, action: PayloadAction<string>) => {
+      state.editId = action.payload;
+    },
+    
   },
 });
 export const {
@@ -62,9 +65,10 @@ export const {
   toggleComplete,
   removeTodo,
   setFilter,
-  setSort,
+  setSort, 
   updateTodo,
   toggleEditMode,
+  setEditId
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

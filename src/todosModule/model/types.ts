@@ -4,6 +4,7 @@ export interface TodosState {
   filter: string;
   sort: string;
   editMode: boolean; 
+  editId: string
 }
 
 export interface ITodo {

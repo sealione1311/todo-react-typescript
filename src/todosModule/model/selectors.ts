@@ -7,6 +7,7 @@ export const getTodos = (state: RootState) => state.todos.todosList;
 export const getFilter = (state: RootState) => state.todos.filter;
 export const getSort = (state: RootState) => state.todos.sort;
 export const getEditMode = (state: RootState) => state.todos.editMode;
+export const getEditId =  (state: RootState) => state.todos.editId;
 
 export const selectFilteredAndSortedTodos = createSelector(
   [getTodos, getFilter, getSort],

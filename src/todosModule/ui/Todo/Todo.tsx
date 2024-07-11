@@ -1,6 +1,7 @@
 import { useAppDispatch } from "../../../store/store";
 import {
   removeTodo,
+  setEditId,
   toggleComplete,
   toggleEditMode,
 } from "../../model/todosSlice";
@@ -25,6 +26,7 @@ function Todo({ id, completed, title }: TodoProps) {
   };
   const handleEditTodo = () => {
     dispatch(toggleEditMode(true));
+    dispatch(setEditId(id));
   };
 
   return (

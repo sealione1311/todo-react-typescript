@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getEditMode } from "../../model/selectors";
+import { getEditId, getEditMode } from "../../model/selectors";
 import { EditTodo } from "../EditTodo/EditTodo";
 import { Todo } from "../Todo/Todo";
 import { ITodo } from "../../model/types";
@@ -10,8 +10,9 @@ interface TodoItemProps {
 
 function TodoItem({ todo }: TodoItemProps) {
   const editMode = useSelector(getEditMode);
+  const editId = useSelector(getEditId)
 
-  return editMode ? (
+  return editMode && editId === todo.id ? (
     <EditTodo key={todo.id} id={todo.id} />
   ) : (
     <Todo
